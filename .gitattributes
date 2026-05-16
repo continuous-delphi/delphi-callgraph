@@ -1,0 +1,28 @@
+# Default: normalize all text files to LF in the repo.
+* text eol=lf
+
+# Delphi source files should always be CRLF.
+*.inc text eol=crlf
+*.pas text eol=crlf
+*.dpr text eol=crlf
+
+# PowerShell scripts should be CRLF for Windows contributors.
+*.ps1   text eol=crlf
+*.psm1  text eol=crlf
+*.psd1  text eol=crlf
+
+# Batch files must be CRLF.
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# JSON, YAML, Markdown, and shell scripts: LF only.
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.md    text eol=lf
+*.sh    text eol=lf
+
+# Binary files: no line ending conversion.
+*.png   binary
+*.jpg   binary
+*.zip   binary
