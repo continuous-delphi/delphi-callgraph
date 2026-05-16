@@ -143,6 +143,13 @@ Use `-OutputFile` to write a JSON summary for CI tooling:
     "json": "C:/repo/artifacts/callgraph/callgraph.json",
     "dot": "C:/repo/artifacts/callgraph/callgraph.dot"
   },
+  "summary": {
+    "files": 34,
+    "nodes": 389,
+    "classes": 25,
+    "standalone": 36,
+    "edges": 1143
+  },
   "duration": 1.2
 }
 ```

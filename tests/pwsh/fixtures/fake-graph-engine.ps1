@@ -32,7 +32,21 @@ for ($i = 0; $i -lt $Arguments.Count; $i++) {
         }
 
         switch ($arg) {
-            '--json'    { Set-Content -LiteralPath $outFile -Value '{"nodes":[],"edges":[]}' -Encoding UTF8 }
+            '--json'    {
+                $json = @{
+                    files = @('Unit1.pas', 'Unit2.pas')
+                    nodes = @(
+                        @{ id = 'TFoo.A'; class = 'TFoo'; name = 'A' }
+                        @{ id = 'TFoo.B'; class = 'TFoo'; name = 'B' }
+                        @{ id = 'Standalone'; class = ''; name = 'Standalone' }
+                    )
+                    edges = @(
+                        @{ source = 'TFoo.A'; target = 'TFoo.B' }
+                        @{ source = 'Standalone'; target = 'TFoo.A' }
+                    )
+                } | ConvertTo-Json -Depth 5
+                Set-Content -LiteralPath $outFile -Value $json -Encoding UTF8
+            }
             '--dot'     { Set-Content -LiteralPath $outFile -Value 'digraph G { A -> B }' -Encoding UTF8 }
             '--summary' { Set-Content -LiteralPath $outFile -Value 'Call graph summary' -Encoding UTF8 }
         }

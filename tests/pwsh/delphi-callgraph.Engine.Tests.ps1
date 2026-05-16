@@ -43,6 +43,11 @@ Describe 'delphi-callgraph -- engine dispatch' {
         $result.formats | Should -Contain 'json'
         $result.formats | Should -Contain 'dot'
         $result.formats | Should -Contain 'txt'
+        $result.summary.files | Should -Be 2
+        $result.summary.nodes | Should -Be 3
+        $result.summary.classes | Should -Be 1
+        $result.summary.standalone | Should -Be 1
+        $result.summary.edges | Should -Be 2
     }
 
     It 'forwards radCallGraph class and annotation options' {
@@ -63,6 +68,40 @@ Describe 'delphi-callgraph -- engine dispatch' {
         $args | Should -Contain '--class'
         $args | Should -Contain 'TFoo'
         $args | Should -Contain '--no-annotations'
+    }
+
+    It 'accepts numeric annotations values from PowerShell File mode' {
+        $outDir = Join-Path $TestDrive 'rad-annotations-numeric'
+        $argsFile = Join-Path $TestDrive 'rad-annotations-numeric-args.json'
+        $env:DELPHI_CALLGRAPH_FAKE_ARGS_FILE = $argsFile
+
+        & pwsh -NoProfile -File $script:ScriptPath `
+            -Path $script:SampleUnit `
+            -EnginePath $script:FakeEngine `
+            -Formats json `
+            -OutputDir $outDir `
+            -Annotations 0
+
+        $LASTEXITCODE | Should -Be 0
+        $args = @(Get-Content -LiteralPath $argsFile -Raw | ConvertFrom-Json)
+        $args | Should -Contain '--no-annotations'
+    }
+
+    It 'accepts comma-separated path values from PowerShell File mode' {
+        $outDir = Join-Path $TestDrive 'rad-comma-paths'
+        $argsFile = Join-Path $TestDrive 'rad-comma-paths-args.json'
+        $env:DELPHI_CALLGRAPH_FAKE_ARGS_FILE = $argsFile
+
+        & pwsh -NoProfile -File $script:ScriptPath `
+            -Path "$script:SampleUnit,$script:FixtureDir" `
+            -EnginePath $script:FakeEngine `
+            -Formats json `
+            -OutputDir $outDir
+
+        $LASTEXITCODE | Should -Be 0
+        $args = @(Get-Content -LiteralPath $argsFile -Raw | ConvertFrom-Json)
+        $args | Should -Contain $script:SampleUnit
+        $args | Should -Contain $script:FixtureDir
     }
 
     It 'runs PasDoc with both GraphViz options when GraphKind is all' {
