@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [Unreleased]
+
+- deterministic radCallGraph output is enabled by default via
+  `--deterministic`; pass `-Deterministic:$false` to keep timestamps
+
+---
+
 ## [0.1.0] 2026-05-16
 
 - initial standalone PowerShell wrapper for `radCallGraph.exe`

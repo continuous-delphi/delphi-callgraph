@@ -65,6 +65,7 @@ The test suite requires PowerShell 7+.
 | `-SummaryFile` | `callgraph.txt` | Explicit text summary path. |
 | `-Class` | | radCallGraph class filter. |
 | `-Annotations` | `$true` | Include `{cg:...}` annotation data for radCallGraph. |
+| `-Deterministic` | `$true` | Pass `--deterministic` to radCallGraph for reproducible output without timestamps. |
 | `-GraphKind` | engine default | `call`, `uses`, `classes`, `dependency`, or `all`. |
 | `-GraphVizUses` | off | PasDoc unit dependency graph. |
 | `-GraphVizClasses` | off | PasDoc class hierarchy graph. |

@@ -68,6 +68,7 @@ Describe 'delphi-callgraph -- engine dispatch' {
         $args | Should -Contain '--class'
         $args | Should -Contain 'TFoo'
         $args | Should -Contain '--no-annotations'
+        $args | Should -Contain '--deterministic'
     }
 
     It 'accepts numeric annotations values from PowerShell File mode' {
@@ -85,6 +86,23 @@ Describe 'delphi-callgraph -- engine dispatch' {
         $LASTEXITCODE | Should -Be 0
         $args = @(Get-Content -LiteralPath $argsFile -Raw | ConvertFrom-Json)
         $args | Should -Contain '--no-annotations'
+    }
+
+    It 'can disable deterministic radCallGraph output' {
+        $outDir = Join-Path $TestDrive 'rad-deterministic-disabled'
+        $argsFile = Join-Path $TestDrive 'rad-deterministic-disabled-args.json'
+        $env:DELPHI_CALLGRAPH_FAKE_ARGS_FILE = $argsFile
+
+        & pwsh -NoProfile -File $script:ScriptPath `
+            -Path $script:SampleUnit `
+            -EnginePath $script:FakeEngine `
+            -Formats json `
+            -OutputDir $outDir `
+            -Deterministic 0
+
+        $LASTEXITCODE | Should -Be 0
+        $args = @(Get-Content -LiteralPath $argsFile -Raw | ConvertFrom-Json)
+        $args | Should -Not -Contain '--deterministic'
     }
 
     It 'accepts comma-separated path values from PowerShell File mode' {
