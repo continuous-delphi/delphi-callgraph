@@ -177,16 +177,7 @@ Requires PowerShell 7+, Pester 5.7+, and PSScriptAnalyzer.
 ## References
 
 - [PasDoc command line GraphViz options](https://pasdoc.github.io/CommandLine.html)
-- [Embarcadero Delphi compiler GraphViz export](https://docwiki.embarcadero.com/RADStudio/Athens/en/GraphViz_file_export_for_the_Delphi_Compiler)
-
-## Maturity
-
-This repository is currently `incubator`. Both implementations are under active development.
-It will graduate to `stable` once:
-
-- At least one downstream consumer exists.
-
-Until graduation, breaking changes may occur
+- [Embarcadero Delphi compiler GraphViz export](https://docwiki.embarcadero.com/RADStudio/en/GraphViz_file_export_for_the_Delphi_Compiler)
 
 ## Continuous-Delphi
 

@@ -4,14 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [Unreleased]
+## [1.0.0] - 2026-05-17
 
 - deterministic radCallGraph output is enabled by default via
   `--deterministic`; pass `-Deterministic:$false` to keep timestamps
+  (Doesn't add a generated date/time stamp)
 
 ---
 
-## [0.1.0] 2026-05-16
+## [0.1.0] - 2026-05-16
 
 - initial standalone PowerShell wrapper for `radCallGraph.exe`
 - output format routing for JSON, DOT, and text summary files

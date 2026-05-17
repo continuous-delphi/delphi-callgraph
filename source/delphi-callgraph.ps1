@@ -141,7 +141,7 @@ $ExitEngineNotFound   = 3
 $ExitInputNotFound    = 4
 $ExitEngineFailed     = 5
 
-$script:ToolVersion = '0.1.0'
+$script:ToolVersion = '1.0.0'
 
 # -----------------------------------------------------------------------------
 # Version info
